@@ -1,8 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "mea2n-usrevreg",
-    "ejected": true
+    "name": "mea2n-usrevreg"
   },
   "apps": [
     {
@@ -53,7 +52,6 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {
-    }
+    "component": {}
   }
 }
