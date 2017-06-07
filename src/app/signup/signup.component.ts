@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './../auth.service';
+//import { AuthService } from './../auth.service';
 import { User } from './../user';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
-  providers: [AuthService]
+  styleUrls: ['./signup.component.css']//,
+  //providers: [AuthService]
 })
 export class SignupComponent implements OnInit {
 public user:User
-response
-constructor(private _authService: AuthService) { }
+//response
+constructor(){}
+
+//constructor(private _authService: AuthService) { }
   ngOnInit() {}
 
   onSubmit = value => {
@@ -22,7 +24,7 @@ constructor(private _authService: AuthService) { }
     this.user.email = value.email;
     this.user.dob = value.dob;
 
-    this._authService.registerUser(this.user)
-      .subscribe(res => this.response = res);
+    // this._authService.registerUser(this.user)
+    //   .subscribe(res => this.response = res);
   }
 }
