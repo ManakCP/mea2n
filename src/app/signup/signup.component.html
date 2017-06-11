@@ -1,59 +1,90 @@
 <p class="text-center">
-  New User..??  
+  New User..??
 </p>
-<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+<div *ngIf = 'result' class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">x</button>
+  {{result}}
+</div>
+
+<form #userForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="row">
-  <div class="col-xs-2 col-md-2"></div>
-  <div class="col-xs-8 col-md-8 input-group" style="margin-bottom: 10px;">
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8" style="margin-bottom: 10px;">
+    <div class="input-group">
     <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-    <input ngModel #nameRef="ngModel" minlength="4" maxlength="10" name="name" type="text" class="form-control" placeholder="User name" required>
-    <div *ngIf="nameRef.errors && (nameRef.dirty || nameRef.touched)" class="alert alert-danger">
+    <!--<input ngModel #nameRef="ngModel" minlength="4" maxlength="10" name="name" type="text" class="form-control" placeholder="User name" required>-->
+    <input class="form-control" minlength="4" maxlength="10" required 
+      type="text" name="nameRef" #nameRef="ngModel" [(ngModel)]="user.name" placeholder="User name">
+    </div>
+    <div *ngIf="nameRef.errors && (nameRef.dirty || nameRef.touched)" class="text-danger">
       <div [hidden]="!nameRef.errors.required">
         Please enter name
       </div>
       <div [hidden]="!nameRef.errors.minlength">
         Please enter atleast 4 characters
-      </div>      
+      </div>
     </div>
-  </div>    
-  <div class="col-xs-2 col-md-2">    
+  </div>
+  <div class="col-xs-1 col-md-2">
   </div>
   </div>
 
   <div class="row">
-  <div class="col-xs-2 col-md-2"></div>
-  <div class="col-xs-8 col-md-8 input-group" style="margin-bottom: 10px;">
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8" style="margin-bottom: 10px;">
+    <div class="input-group">
     <span class="input-group-addon"><i class="fa fa-key"></i></span>
-    <input ngModel name="password" type="password" class="form-control" placeholder="Password" required>
+    <input class="form-control" required
+        type="password" name="pwd" [(ngModel)]="user.password" placeholder="Password">
+    </div>
   </div>
-  <div class="col-xs-2 col-md-2"></div>
+  <div class="col-xs-1 col-md-2"></div>
   </div>
 
   <div class="row">
-  <div class="col-xs-2 col-md-2"></div>
-  <div class="col-xs-8 col-md-8 input-group" style="margin-bottom: 10px;">
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8" style="margin-bottom: 10px;">
+    <div class="input-group">
     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-    <input ngModel name="email" type="email" class="form-control" placeholder="Email" required>  
+    <input class="form-control" required
+      type="email" name="emailId" [(ngModel)]="user.email" placeholder="Email" >
+    </div>
   </div>
-  <div class="col-xs-2 col-md-2"></div>
+  <div class="col-xs-1 col-md-2"></div>
   </div>
 
   <div class="row">
-  <div class="col-xs-2 col-md-2"></div>
-  <div class="col-xs-8 col-md-8 input-group" style="margin-bottom: 10px;">
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8" style="margin-bottom: 10px;">
+    <div class="input-group">
     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-    <input ngModel name="dob" type="text" class="form-control">    
+    <input class="form-control" required
+      type="date" name="date" [(ngModel)]="user.dob" placeholder="Date of birth"> 
+    </div>
   </div>
-  <div class="col-sm-2 col-md-2"></div>
+  <div class="col-sm-1 col-md-2"></div>
   </div>
+
   <div class="row">
-  <div class="col-xm-2 col-md-2"></div>
-  <div class="col-xs-8 col-md-8 text-center" >    
-    <button type="submit" class="btn">
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8" style="margin-bottom: 10px;">
+    <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+    <input class="form-control" required
+      type="number" name="age" [(ngModel)]="user.age">
+    </div>
+  </div>
+  <div class="col-sm-1 col-md-2"></div>
+  </div>
+  
+  <div class="row">
+  <div class="col-xm-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8 text-center" >
+    <button type="submit" class="btn" >
       SignUp now..
       <i class="fa fa-thumbs-up"></i>
     </button>
   </div>
-  <div class="col-xs-2 col-md-2"></div>
-  </div>
+  <div class="col-xs-1 col-md-2"></div>
+  </div>  
 </form>

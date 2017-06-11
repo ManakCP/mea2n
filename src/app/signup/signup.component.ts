@@ -1,30 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-//import { AuthService } from './../auth.service';
-import { User } from './../user';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { SharedService } from '..//shared.service';
+import { IUser } from './../../Models/user.interface';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']//,
-  //providers: [AuthService]
+  styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
-public user:User
-//response
-constructor(){}
+export class SignupComponent implements OnInit, OnDestroy {
+  public user: IUser;
+  subscription: Subscription;
+  result: string;
 
-//constructor(private _authService: AuthService) { }
-  ngOnInit() {}
+  constructor(private _sharedSrv: SharedService) { }
 
-  onSubmit = value => {
-    // user :User = { name: value.name, password: value.password, email: value.email, dob: value.dob };
-    //console.log(value)
-    this.user.name = value.name;
-    this.user.password = value.password;
-    this.user.email = value.email;
-    this.user.dob = value.dob;
-
-    // this._authService.registerUser(this.user)
-    //   .subscribe(res => this.response = res);
+  ngOnInit() {
+    this.user = {
+      name: '',
+      password: '',
+      email: '',
+      dob: new Date(),
+      age: 0,
+    };
+    this.subscription = this._sharedSrv.sentResult$.subscribe(res => this.result = res);
   }
+
+  onSubmit = () => {
+     this._sharedSrv.sendUser(this.user);
+  }
+
+  ngOnDestroy() {
+     this.subscription.unsubscribe();
+   }
 }
