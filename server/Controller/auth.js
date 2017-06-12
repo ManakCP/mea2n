@@ -4,10 +4,6 @@ let user = mongoose.model('Users');
 const bcrypt = require('bcrypt');
 const config = require('../../config');
 
-exports.get_user = (req, res) => {
-    console.log('get user');
-}
-
 exports.add_user = (req, res) => {
     let signUp_user = new user(req.body);
     signUp_user.dob = new Date(req.body.dob).toJSON();
@@ -24,4 +20,20 @@ exports.add_user = (req, res) => {
             res.send(err);
         res.json('User registered successfully!!');
     });
+}
+
+exports.verify_user = (req, res) => {
+    user.findOne({email: req.body.email}, function(err, response){
+        if (err) res.send(err);
+
+        if (!response){
+            res.json({success: false, message: 'Invalid emailId'});
+        }else if (response){
+            if (bcrypt.compareSync(req.body.password, response.password)){
+                res.json({success: true, message: 'valid user'})
+            }else{
+                res.json({success: false, message: 'Invalid password'});
+            }
+        }
+    })
 }

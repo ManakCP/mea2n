@@ -1,32 +1,36 @@
 <div class="col-md-12">
   <p class="text-center">
-      {{title}}
-  </p>
-  
+    {{title}}       
+  </p> 
+  <div class="text-danger text-center">{{result}}</div>
+  <form #loginForm="ngForm" (ngSubmit)="onLogin()">
   <div class="row">
-  <div class="col-sm-2 col-md-2"></div>
-  <div class="col-sm-8 col-md-8 input-group" style="margin-bottom: 10px;">
+    <div class="col-xs-1 col-md-2"></div>
+    <div class="col-xs-10 col-md-8 input-group" style="margin-bottom: 10px;">
       <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-      <input class="form-control" type="email" placeholder="email Id">
+      <input class="form-control" placeholder="email Id" required 
+        type="email" name="email" [(ngModel)]="login.email">
     </div>
-    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-xs-1 col-md-2"></div>
   </div>
 
     <div class="row">
-  <div class="col-sm-2 col-md-2"></div>
-  <div class="col-sm-8 col-md-8 input-group" style="margin-bottom: 10px;">
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8 input-group" style="margin-bottom: 10px;">
       <span class="input-group-addon"><i class="fa fa-key"></i></span>
-      <input class="form-control" type="password" placeholder="password">
+      <input class="form-control" placeholder="password" required
+        type="password" name="pwd" [(ngModel)]="login.password">
     </div>
-<div class="col-sm-2 col-md-2"></div>
+    <div class="col-xs-1 col-md-2"></div>
   </div>
 
     <div class="row">
-  <div class="col-sm-2 col-md-2"></div>
-  <div class="col-sm-8 col-md-8 text-center">
-      <button class="btn">Login</button>
+  <div class="col-xs-1 col-md-2"></div>
+  <div class="col-xs-10 col-md-8 text-center">
+      <button type="submit" class="btn">Login</button>
       <button class="btn btn-link" [routerLink]="['/signup']">SignUp!!</button>
     </div>
-    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-xs-1 col-md-2"></div>
   </div>
+  </form>
   </div>

@@ -1,21 +1,22 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SharedService } from '..//shared.service';
+import { SharedService } from '../shared.service';
 import { IUser } from './../../Models/user.interface';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit, OnDestroy {
   public user: IUser;
   subscription: Subscription;
+  title: string;
   result: string;
 
   constructor(private _sharedSrv: SharedService) { }
 
   ngOnInit() {
+    this.title = 'New User..??';
     this.user = {
       name: '',
       password: '',
