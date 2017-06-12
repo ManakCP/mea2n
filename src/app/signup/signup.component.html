@@ -1,5 +1,5 @@
 <p class="text-center">
-  New User..??
+  {{title}}
 </p>
 <div *ngIf = 'result' class="alert alert-success">
   <button type="button" class="close" data-dismiss="alert">x</button>
@@ -13,8 +13,8 @@
     <div class="input-group">
     <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
     <!--<input ngModel #nameRef="ngModel" minlength="4" maxlength="10" name="name" type="text" class="form-control" placeholder="User name" required>-->
-    <input class="form-control" minlength="4" maxlength="10" required 
-      type="text" name="nameRef" #nameRef="ngModel" [(ngModel)]="user.name" placeholder="User name">
+    <input class="form-control" minlength="4" maxlength="10" placeholder="User name" required 
+      type="text" name="nameRef" #nameRef="ngModel" [(ngModel)]="user.name">
     </div>
     <div *ngIf="nameRef.errors && (nameRef.dirty || nameRef.touched)" class="text-danger">
       <div [hidden]="!nameRef.errors.required">
@@ -34,8 +34,8 @@
   <div class="col-xs-10 col-md-8" style="margin-bottom: 10px;">
     <div class="input-group">
     <span class="input-group-addon"><i class="fa fa-key"></i></span>
-    <input class="form-control" required
-        type="password" name="pwd" [(ngModel)]="user.password" placeholder="Password">
+    <input class="form-control" placeholder="Password" required
+        type="password" name="pwd" [(ngModel)]="user.password">
     </div>
   </div>
   <div class="col-xs-1 col-md-2"></div>
@@ -46,8 +46,8 @@
   <div class="col-xs-10 col-md-8" style="margin-bottom: 10px;">
     <div class="input-group">
     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-    <input class="form-control" required
-      type="email" name="emailId" [(ngModel)]="user.email" placeholder="Email" >
+    <input class="form-control" placeholder="Email" required
+      type="email" name="emailId" [(ngModel)]="user.email" >
     </div>
   </div>
   <div class="col-xs-1 col-md-2"></div>
@@ -58,8 +58,8 @@
   <div class="col-xs-10 col-md-8" style="margin-bottom: 10px;">
     <div class="input-group">
     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-    <input class="form-control" required
-      type="date" name="date" [(ngModel)]="user.dob" placeholder="Date of birth"> 
+    <input class="form-control" placeholder="Date of birth" required
+      type="date" name="date" [(ngModel)]="user.dob"> 
     </div>
   </div>
   <div class="col-sm-1 col-md-2"></div>
@@ -86,5 +86,5 @@
     </button>
   </div>
   <div class="col-xs-1 col-md-2"></div>
-  </div>  
+  </div>
 </form>
