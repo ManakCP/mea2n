@@ -29,8 +29,8 @@ exports.verify_user = (req, res) => {
         if (!response){
             res.json({success: false, message: 'Invalid emailId'});
         }else if (response){
-            if (bcrypt.compareSync(req.body.password, response.password)){
-                res.json({success: true, message: 'valid user'})
+            if (bcrypt.compareSync(req.body.password, response.password)){                
+                res.json({success: true, message: 'valid user', username: response.name})
             }else{
                 res.json({success: false, message: 'Invalid password'});
             }

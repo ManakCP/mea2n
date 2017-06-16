@@ -23,6 +23,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       email: '',
       dob: new Date(),
       age: 0,
+      isLoggedInUser: false
     };
     this.subscription = this._sharedSrv.sentResult$.subscribe(res => this.result = res);
   }

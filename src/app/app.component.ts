@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthService } from './auth.service';
 import { SharedService } from './shared.service';
-import { IUser, ILogin } from './../Models/user.interface';
-
+import { IUser, ILogin, IDashBoard } from './../Models/user.interface';
 import { Subscription } from 'rxjs/Subscription';
 
 
@@ -14,11 +15,9 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  user: IUser;
-  login: ILogin;
   title = 'mea2n app';
 
-  constructor(private _authSrv: AuthService, private _sharedSrv: SharedService) {
+  constructor(private _authSrv: AuthService, private _sharedSrv: SharedService, private _router: Router) {
   }
 
   ngOnInit(): void {
@@ -33,9 +32,19 @@ export class AppComponent implements OnInit, OnDestroy {
 
   validateUser = (login: ILogin) => {
     this._authSrv.validateUser(login)
-      .subscribe(res => res['success'] === true
-        ? console.log(res['message'])
-          : this._sharedSrv.sendResult(res['message']));
+      .subscribe(res => (res['success']) === true
+        ? (this.validUser(res['username']))
+          : (this._sharedSrv.sendResult(res['message'])));
+  }
+
+  validUser = username => {
+    const DashBoard: IDashBoard = {
+      name: username,
+      isLoggedInUser: true
+    };
+
+    this._router.navigate(['/dashboard']);
+    // console.log(db);
   }
 
    ngOnDestroy() {

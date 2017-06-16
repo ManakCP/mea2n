@@ -1,7 +1,7 @@
 module.exports = function(app){
     let auth = require('../Controller/auth');
 
-    app.route('/user')        
+    app.route('/user')
         .post(auth.add_user);
 
     app.route('/login')
